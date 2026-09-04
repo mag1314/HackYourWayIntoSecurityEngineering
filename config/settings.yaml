@@ -1,0 +1,104 @@
+ollama:
+  host: http://localhost:11434
+  model: llama3.1:8b        # any local chat model: qwen2.5:14b, mistral-nemo, etc.
+  temperature: 0.3
+  num_ctx: 16384
+
+# A posting counts as cybersecurity when its TITLE hits a strong keyword, or
+# its description contains >= min_description_hits weak keywords.
+filter:
+  us_only: true                # drop postings outside the US (Remote counts as US)
+  location_keywords: []        # optional extra restriction, e.g. ["Austin", "Remote", "Texas"]
+
+  # Whole-word match against the TITLE
+  title_keywords:
+    - security
+    - cyber
+    - cybersecurity
+    - infosec
+    - soc
+    - penetration
+    - pentest
+    - pentester
+    - red team
+    - blue team
+    - threat
+    - vulnerability
+    - incident response
+    - appsec
+    - application security
+    - cloud security
+    - iam
+    - identity
+    - grc
+    - devsecops
+    - forensics
+    - malware
+    - detection engineer
+    - detection engineering
+
+  # Titles containing these are dropped BEFORE anything else is checked.
+  # Mostly non-engineering / non-IC roles and false friends.
+  exclude_title_keywords:
+    - physical security
+    - security guard
+    - security officer
+    - corporate security
+    - object detection
+    - sales
+    - presales
+    - pre-sales
+    - business development
+    - account manager
+    - account executive
+    - director
+    - managing director
+    - manager
+    - head of
+    - vp
+    - vice president
+    - chief
+    - ciso
+    - project manager
+    - program manager
+    - product manager
+    - recruiter
+    - therapist
+    - physician
+    - nurse
+    - psychiatrist
+    - client advisor
+    - stock associate
+    - intern
+    - internship
+
+  # Whole-word match against the description; needs >= min_description_hits
+  description_keywords:
+    - siem
+    - splunk
+    - crowdstrike
+    - nist
+    - iso 27001
+    - soc 2
+    - vulnerability management
+    - threat hunting
+    - incident response
+    - penetration testing
+    - security operations
+    - zero trust
+    - edr
+    - burp
+    - nessus
+    - owasp
+  min_description_hits: 3
+
+apply:
+  # "chrome" = your installed Google Chrome, "msedge" = Edge,
+  # "chromium" = Playwright's bundled build. Falls back automatically.
+  browser: chrome
+  # Persistent profile so cookies, logins and autofill survive between runs.
+  # It is a SEPARATE profile from your everyday Chrome (Chrome locks that one
+  # while it's open); sign in to it once and it stays signed in.
+  profile_dir: data/browser_profile
+  wait_for_submit_minutes: 15
+  cover_letter_in_additional_info: true

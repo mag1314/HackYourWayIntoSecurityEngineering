@@ -1,0 +1,83 @@
+# Copy to config/candidate.yaml and fill in. candidate.yaml is gitignored.
+# All of this stays on your machine. It is only ever sent to the local Ollama
+# server (for tailoring) and typed into the Lever form in your own browser.
+full_name: Jane Doe
+preferred_name: Jane Doe
+email: you@example.com
+phone: "+1-555-000-0000"
+location: "Austin, TX"
+linkedin: https://www.linkedin.com/in/your-handle/
+citizenship: (your country)
+sponsorship_required: true
+
+# Your full "master" resume in Markdown. The tailor step only re-orders,
+# re-phrases and trims THIS content - it is instructed never to add skills,
+# employers, dates or certifications that are not in here.
+resume_source: data/resume.md
+
+# Answers for Lever custom questions ("cards"). A question is matched when its
+# label contains ANY of the phrases in `match` (case-insensitive). Add more
+# entries as you discover questions. Anything required and unmatched => the
+# tool does NOT submit and emails you instead.
+answers:
+  - match: ["hear about us", "how did you hear", "how did you find"]
+    answer: LinkedIn
+  - match: ["require sponsorship", "need sponsorship", "visa sponsorship", "sponsorship now or in the future", "require visa"]
+    answer: "Yes"
+  - match: ["legally authorized to work", "authorized to work in the united states", "eligible to work"]
+    answer: "Yes"          # <-- set according to your status
+  - match: ["linkedin url", "linkedin link", "your linkedin", "linkedin profile url"]
+    answer: https://www.linkedin.com/in/your-handle/
+  - match: ["current location", "where are you located", "city"]
+    answer: "Austin, TX"
+  - match: ["citizenship", "country of citizenship"]
+    answer: "(your country)"
+  - match: ["preferred name", "what should we call you"]
+    answer: Jane Doe
+  - match: ["pronouns"]
+    answer: (your pronouns)
+
+  # --- questions seen in the wild; edit the answers to fit your situation ---
+  - match: ["export control", "countries of which you are a citizen", "legal permanent resident"]
+    answer: "India"
+  - match: ["years of experience", "how many years"]
+    answer: "4"
+  - match: ["salary", "compensation expectation", "desired compensation"]
+    answer: "Open - flexible based on the role and total package."
+  - match: ["notice period", "when can you start", "start date"]
+    answer: "Two weeks from offer."
+  - match: ["are you currently employed"]
+    answer: "Yes"
+  - match: ["have you ever worked for", "previously employed by", "former employee"]
+    answer: "No"
+  - match: ["security clearance", "do you hold a clearance"]
+    answer: "No"
+  - match: ["% of travel", "percent of travel", "travel are you open", "willing to travel"]
+    answer: "100%"
+  - match: ["industry related certifications", "certifications do you hold", "hold any certifications"]
+    answer: "(list your certifications, or No)"
+  - match: ["primary residence", "home address", "mailing address", "residence address"]
+    answer: "Austin, TX"
+  - match: ["post-secondary education", "education attained", "college name; degree"]
+    answer: "(University; Degree)"
+  - match: ["with or without reasonable accommodation", "perform the requisite duties", "essential functions"]
+    answer: "Yes"
+  - match: ["work authorization status", "authorization status", "us citizen, green card"]
+    answer: "(e.g. US Citizen / Green Card / H-1B / F-1 OPT)"
+  - match: ["will be disregarded", "consider the contents of an uploaded resume", "i acknowledge", "i understand and agree", "i agree", "i consent", "acknowledge"]
+    answer: "Yes"
+  - match: ["18 years", "over the age of"]
+    answer: "Yes"
+  - match: ["where would you be open to relocating", "relocation preference"]
+    answer: "Yes - open to any US location."
+  - match: ["relocate", "willing to relocate"]
+    answer: "Yes"
+  - match: ["remote", "hybrid", "onsite", "work from office"]
+    answer: "Open to onsite, hybrid or remote."
+
+# Voluntary EEO section (Lever uses select boxes; matched by option text).
+eeo:
+  gender: (Male / Female / Decline to self-identify)
+  race: "(pick the option text as it appears on the form, or Decline)"
+  veteran: "(I am not a protected veteran / ...)"
+  disability: ""   # leave blank to skip
