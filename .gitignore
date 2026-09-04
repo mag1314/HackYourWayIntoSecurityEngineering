@@ -1,0 +1,14 @@
+# --- personal data: never commit ---
+config/candidate.yaml
+data/resume.md
+data/applications.db
+data/chrome_profile/
+data/browser_profile/
+output/
+.env
+
+# --- build / env ---
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
