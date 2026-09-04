@@ -1,4 +1,4 @@
-# secjobs — private, on-device cybersecurity job-application assistant
+# secjobs - private, on-device cybersecurity job-application assistant
 
 Scans 20 Lever job boards for cybersecurity roles, tailors your resume and cover
 letter for each one with a **local** model (Ollama), fills the Lever application
@@ -9,8 +9,8 @@ No cloud LLM, no third-party service.
 
 ## How submission works (read this)
 
-The tool fills the entire form — resume upload, cover letter, EEO, custom
-questions — then **pauses for you to press Submit**. It auto-detects the
+The tool fills the entire form - resume upload, cover letter, EEO, custom
+questions - then **pauses for you to press Submit**. It auto-detects the
 thank-you page and marks the job `applied`. This is deliberate:
 
 * Lever applications are behind hCaptcha and Lever's terms prohibit bot
@@ -24,7 +24,7 @@ If a form has a required question with no configured answer, the tool does
 
 ## Applying: two modes
 
-**Mode A — userscript in your normal Chrome (recommended).** Lever uses an
+**Mode A - userscript in your normal Chrome (recommended).** Lever uses an
 invisible hCaptcha that rejects automated browsers with "There was an error
 verifying your application". So the reliable path fills the form *inside your
 everyday Chrome*, where nothing is automated:
@@ -41,7 +41,7 @@ everyday Chrome*, where nothing is automated:
    panel. Review, click Lever's Submit. The thank-you page is detected and the
    job is marked `applied` automatically (or click **Mark applied**).
 
-**Mode B — attach to your own Chrome (no extension needed).**
+**Mode B - attach to your own Chrome (no extension needed).**
 
 ```powershell
 secjobs chrome                 # starts Chrome with a debugging port; leave it open
@@ -61,12 +61,12 @@ git clone <this repo> secjobs && cd secjobs
 
 Then:
 
-1. `data/resume.md` — your master resume in Markdown (see `resume.example.md`). Tailoring only
+1. `data/resume.md` - your master resume in Markdown (see `resume.example.md`). Tailoring only
    ever re-orders/trims this; it cannot add anything that isn't here.
-2. `config/candidate.yaml` — copy from `candidate.example.yaml` and fill in your
+2. `config/candidate.yaml` - copy from `candidate.example.yaml` and fill in your
    contact details, EEO choices and the `answers:` list for custom questions.
-3. `.env` — SMTP app password for the fallback email (optional but recommended).
-4. `config/settings.yaml` — model name; set `location_keywords` if you only want
+3. `.env` - SMTP app password for the fallback email (optional but recommended).
+4. `config/settings.yaml` - model name; set `location_keywords` if you only want
    US/remote roles.
 
 ## Use
@@ -125,7 +125,7 @@ conservative resumes.
 ## Notes / limits
 
 * Lever's public postings API (`api.lever.co/v0/postings/<slug>`) is used for
-  discovery — read-only, no auth, no scraping.
+  discovery - read-only, no auth, no scraping.
 * Lever sometimes overwrites name/email after parsing the uploaded resume; the
   tool re-fills them.
 * Custom-question matching is keyword based. When you hit `needs_input`, add a
